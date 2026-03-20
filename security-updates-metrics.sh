@@ -94,7 +94,7 @@ if [ -f "$PRIORITY_CACHE" ]; then
         rm -f "$PRIORITY_CACHE"
     fi
 fi
-touch "$PRIORITY_CACHE"
+[ -f "$PRIORITY_CACHE" ] || touch "$PRIORITY_CACHE"
 
 lookup_priority() {
     local pkg="$1"
