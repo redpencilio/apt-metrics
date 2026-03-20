@@ -178,6 +178,7 @@ trap 'rm -f "${TMPFILE}"' EXIT
 
 } > "${TMPFILE}"
 
+chmod 644 "${TMPFILE}"
 mv "${TMPFILE}" "${PROM_FILE}"
 trap - EXIT
 
