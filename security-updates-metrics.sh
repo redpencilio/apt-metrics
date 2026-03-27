@@ -140,7 +140,7 @@ fi
 
 # ── 3. Reboot check ──────────────────────────────────────────────────
 REBOOT_REQUIRED=0
-[ -f /var/run/reboot-required ] && REBOOT_REQUIRED=1
+[ -f /host/var/run/reboot-required ] && REBOOT_REQUIRED=1
 
 # ── 4. Write .prom file atomically ───────────────────────────────────
 END_TIME=$(date +%s)

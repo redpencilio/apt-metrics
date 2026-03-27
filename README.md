@@ -17,8 +17,9 @@ reboot-required flag, and write access to the node_exporter textfile directory.
       - /var/lib/apt:/var/lib/apt:ro
       - /var/lib/dpkg:/var/lib/dpkg:ro
       - /etc/apt:/etc/apt:ro
-      # Reboot flag (read-only)
-      - /var/run/reboot-required:/var/run/reboot-required:ro
+      # Reboot flag (read-only) — mount the parent dir to avoid Docker
+      # creating a placeholder directory if the file doesn't exist yet
+      - /var/run:/host/var/run:ro
 ```
 
 ## Metrics
