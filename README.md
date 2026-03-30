@@ -14,7 +14,7 @@ reboot-required flag, and write access to the node_exporter textfile directory.
 ```yaml
 services:
   apt-metrics:
-    image: redpencil/apt-metrics
+    image: redpencil/apt-metrics:0.1.0
     volumes:
       # Host apt/dpkg state (read-only)
       - /var/lib/apt:/var/lib/apt:ro
