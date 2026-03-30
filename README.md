@@ -12,14 +12,22 @@ reboot-required flag, and write access to the node_exporter textfile directory.
 
 
 ```yaml
+services:
+  apt-metrics:
+    image: redpencil/apt-metrics
     volumes:
       # Host apt/dpkg state (read-only)
       - /var/lib/apt:/var/lib/apt:ro
       - /var/lib/dpkg:/var/lib/dpkg:ro
       - /etc/apt:/etc/apt:ro
+      - /var/cache/apt:/var/cache/apt:ro
       # Reboot flag (read-only) — mount the parent dir to avoid Docker
       # creating a placeholder directory if the file doesn't exist yet
       - /var/run:/host/var/run:ro
+      # Shared textfile collector volume
+      - ./data/apt-metrics/:/var/lib/node_exporter/textfile_collector
+      # Persistent cache for CVE priority lookups (survives recreates)
+      - ./data/security-metrics-cache:/var/cache/security-updates-metrics
 ```
 
 ## Metrics
